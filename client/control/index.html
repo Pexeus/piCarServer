@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://css.gg/shape-circle.css' rel='stylesheet'>
+    <title>Controller</title>
+</head>
+<body>
+    <img id="display">
+    <i class="gg-shape-circle" id="crosshair"></i>
+
+    <div id="hud">
+        <div id="status">
+            <p id="fps">FPS: 0</p>
+            <div class="smallStatus">
+                <p id="controllerStatus">Controller: Disconnected</p>
+            </div>
+        </div>
+
+        <div class="panel" id="panelBR">
+            <div id="speedIndicator" class="gaugeContainer">
+                <canvas id="gaugeSpeed" class="gauge"></canvas>
+                <h1 id="speedIndicatorText" class="gaugeIndicatorValue">0%</h1>
+                <h1 id="speedIndicatorName" class="gaugeIndicatorName">ESC</h1>
+            </div>
+
+            <div id="distanceIndicator" class="gaugeContainer">
+                <canvas id="gaugeDistance" class="gauge"></canvas>
+                <h1 id="distanceIndicatorText" class="gaugeIndicatorValue">0cm</h1>
+                <h1 id="" class="gaugeIndicatorName">Distance</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
+    <script src="com.js"></script>
+    <script src="UI.js"></script>
+    <script src="controllerInputs.js"></script>
+    <script src="telemetry.js"></script>
+</body>
+</html>

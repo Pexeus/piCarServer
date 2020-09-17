@@ -1,0 +1,23 @@
+{
+  "name": "picarserver2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pexeus/piCarServer2.git"
+  },
+  "author": "Verion/Pexeus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pexeus/piCarServer2/issues"
+  },
+  "homepage": "https://github.com/Pexeus/piCarServer2#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
