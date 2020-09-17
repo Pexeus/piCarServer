@@ -43,6 +43,6 @@ function sendControls() {
     axios.post("/controlsInput", CONTROLLER).then(resp => {
         setTimeout(() => {
             updateControls()
-        }, 10);
+        }, 100);
     });
 }
