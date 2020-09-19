@@ -7,7 +7,7 @@ const io = require("socket.io")(server)
 
 const config = require("./src/config")
 
-const PORT = 80
+const PORT = 83
 
 //still connected check
 TIMEOUT = 10
