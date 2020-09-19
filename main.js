@@ -7,7 +7,6 @@ const io = require("socket.io")(server)
 
 const config = require("./src/config")
 
-
 const PORT = 80
 
 //still connected check
@@ -55,6 +54,13 @@ function initiate() {
         io.emit("controls", req.body)
 
         res.end("ok")
+    })
+
+    app.post("/telemetry", (req, res) => {
+        res.setHeader('Content-Type', 'application/json');
+        console.log(req.body)
+
+        res.end()
     })
 }
 
