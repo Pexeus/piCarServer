@@ -39,7 +39,7 @@ function initiate() {
 
     app.post("/pulse", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        const delay = Date.now() - req.body.time
+        const delay = req.body.time
         res.end(JSON.stringify(delay))
 
         if (TIMEOUT == 0) {
@@ -67,11 +67,14 @@ function initiate() {
 
     app.post("/telemetry", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        console.log(req.body)
+
+        io.emit("telemetry", req.body)
 
         res.end()
     })
 }
 
-initiate()
+setTimeout(() => {
+    initiate() 
+}, 2000);
 //display()
