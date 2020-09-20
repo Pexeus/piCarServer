@@ -3,11 +3,9 @@ GLOBAL_CONFIG = {
         camera: {
             fps: 30,
             width: 858,
-            height: 480
+            height: 480,
+            rate: 3000000
         },
-        transmission: {
-
-        }
     }
 }
 

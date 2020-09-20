@@ -7,35 +7,45 @@ const io = require("socket.io")(server)
 
 const config = require("./src/config")
 
-const PORT = 83
+const PORT = 80
 
 //still connected check
-TIMEOUT = 10
-
-setInterval(() => {
-    if (TIMEOUT > -1) {
-        TIMEOUT -= 1
-    }
-}, 1000);
+TIMEOUT = 0
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("./client"))
 app.use(express.json({ limit: "1mb"}))
 
+setInterval(() => {
+    if (TIMEOUT > 0) {
+        TIMEOUT -= 1
+    }
+    if (TIMEOUT == 0) {
+        connect()
+    }
+}, 1000);
+
+function connect() {
+    console.log("attempting to connect...")
+    io.emit("carConnect", config.get())
+}
+
 function initiate() {
     server.listen(process.env.PORT || PORT, () => {
         console.clear()
         console.log("-> Online on Port " + PORT)
+        connect()
     })
 
-    connect(config.get())
-    tryConnect()
-
-    app.post("/carPulse", (req, res) => {
+    app.post("/pulse", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         const delay = Date.now() - req.body.time
         res.end(JSON.stringify(delay))
 
+        if (TIMEOUT == 0) {
+            console.clear()
+            console.log("connectedtion established!")
+        }
 
         TIMEOUT = 5
     })
@@ -45,8 +55,7 @@ function initiate() {
         const delay = Date.now() - req.body.time
         res.end(JSON.stringify(delay))
 
-        sendFrame(req.body.frame)
-        TIMEOUT = 5
+        io.emit("frame", req.body.frame)
     })
 
     app.post("/controlsInput", (req, res) => {
@@ -64,21 +73,5 @@ function initiate() {
     })
 }
 
-function sendFrame(frame) {
-    io.emit("frame", frame)
-}
-
-function tryConnect() {
-    setInterval(() => {
-        if (TIMEOUT < 1) {
-            console.log("connection timed out, reconnecting...")
-            connect(config.get())
-        }
-    }, 100);
-}
-
-function connect(conf) {
-    io.emit("serverPulse", conf)
-}
-
 initiate()
+//display()
