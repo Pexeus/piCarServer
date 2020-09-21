@@ -39,15 +39,14 @@ function initiate() {
 
     app.post("/pulse", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
-        const delay = req.body.time
-        res.end(JSON.stringify(delay))
+        res.end("ok")
 
         if (TIMEOUT == 0) {
             console.clear()
             console.log("connectedtion established!")
         }
 
-        TIMEOUT = 5
+        TIMEOUT = 3
     })
 
     app.post("/stream", (req, res) => {
@@ -74,7 +73,4 @@ function initiate() {
     })
 }
 
-setTimeout(() => {
-    initiate() 
-}, 2000);
-//display()
+initiate() 

@@ -4,7 +4,7 @@ GLOBAL_CONFIG = {
             fps: 30,
             width: 858,
             height: 480,
-            rate: 3000000
+            rate: 4000000
         },
     }
 }
