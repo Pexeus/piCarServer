@@ -12,41 +12,38 @@ const PORT = 80
 //still connected check
 TIMEOUT = 0
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("./client"))
-app.use(express.json({ limit: "1mb"}))
-
 setInterval(() => {
     if (TIMEOUT > 0) {
         TIMEOUT -= 1
     }
-    if (TIMEOUT == 0) {
-        connect()
+    else {
+        console.log("connection timed out!")
     }
 }, 1000);
 
-function connect() {
-    console.log("attempting to connect...")
-    io.emit("carConnect", config.get())
-}
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("./client"))
+app.use(express.json({ limit: "1mb"}))
 
 function initiate() {
     server.listen(process.env.PORT || PORT, () => {
         console.clear()
         console.log("-> Online on Port " + PORT)
-        connect()
     })
 
     app.post("/pulse", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.end("ok")
 
-        if (TIMEOUT == 0) {
-            console.clear()
-            console.log("connectedtion established!")
-        }
-
         TIMEOUT = 3
+    })
+
+    app.post("/initConnection", (req, res) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(config.get()))
+
+        console.clear()
+        console.log("connectedtion established!")
     })
 
     app.post("/stream", (req, res) => {
