@@ -51,15 +51,6 @@ function initiate() {
         TIMEOUT = 3
     })
 
-    app.post("/initConnection", (req, res) => {
-        console.log(req.body)
-        res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(config.get()))
-
-        console.clear()
-        console.log("connectedtion established!")
-    })
-
     app.post("/stream", (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         const delay = Date.now() - req.body.time

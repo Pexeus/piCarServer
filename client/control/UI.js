@@ -14,7 +14,7 @@ function updateFPS() {
 }
 
 setInterval(() => {
-    SECONDS += 1
+    SECONDS += 0.3
 
     FPS = FRAMES / SECONDS
 
@@ -24,4 +24,4 @@ setInterval(() => {
         SECONDS = 0
         FRAMES = 0
     }
-}, 1000);
+}, 300);
